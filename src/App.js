@@ -15,9 +15,23 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
+  //get all books on book shelf to load
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
+    })
+  }
+  //method to move book to other shelves
+  updateBookshelf = (book, shelf) => {
+    console.log('book',book)
+    console.log('shelf',shelf)
+    BooksAPI.update(book, shelf).then(() => {
+      book.shelf = shelf
+      this.setState(state => ({
+        books: state.books
+        .filter(b => b.id !== book.id)
+        .concat([book])
+      }))
     })
   }
 
@@ -46,7 +60,7 @@ class BooksApp extends React.Component {
             </div>
           </div>
         ) : (
-          <Bookcase books={this.state.books} />
+          <Bookcase books={this.state.books} updateBookshelf={this.updateBookshelf} />
         )}
       </div>
     )
