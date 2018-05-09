@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     books: [],
-    showSearchPage: false
+    showSearchPage: true
   }
 
   //get all books on book shelf to load
@@ -25,8 +25,10 @@ class BooksApp extends React.Component {
   updateBookshelf = (book, shelf) => {
     console.log('book',book)
     console.log('shelf',shelf)
-    BooksAPI.update(book, shelf).then(() => {
-      book.shelf = shelf
+    console.log('book dot shelf', book.shelf)
+    book.shelf = shelf
+    console.log('updated shelf', shelf)
+    BooksAPI.update(book, shelf).then((book, shelf) => {
       this.setState(state => ({
         books: state.books
         .filter(b => b.id !== book.id)
