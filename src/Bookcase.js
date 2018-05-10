@@ -7,8 +7,8 @@ class Bookcase extends Component {
     const { books, updateBookshelf } = this.props
 
     //filter books by shelf category
-    let currentlyReading = books.filter((book) => {
-      return book.shelf === "currentlyReading"
+    let currentlyRead = books.filter((book) => {
+      return book.shelf === "currentlyRead"
     })
 
     let wantToRead = books.filter((book) => {
@@ -26,7 +26,7 @@ class Bookcase extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <Bookshelf books={currentlyReading} shelfName="Currently Reading" updateBookshelf={updateBookshelf}/>
+            <Bookshelf books={currentlyRead} shelfName="Currently Reading" updateBookshelf={updateBookshelf}/>
             <Bookshelf books={wantToRead} shelfName="Want to Read" updateBookshelf={updateBookshelf}/>
             <Bookshelf books={read} shelfName="Read" updateBookshelf={updateBookshelf}/>
           </div>
