@@ -49,7 +49,7 @@ class Search extends Component {
             {results && results.length && results.map((book) => (
               <Book
                 book={book}
-                key={book.title}
+                key={book.id}
                 updateBookshelf={updateBookshelf}
               />
             ))}
