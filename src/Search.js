@@ -26,8 +26,23 @@ class Search extends Component {
 
   render() {
     const { results } = this.state
-    const { updateBookshelf } = this.props
+    const { updateBookshelf, books } = this.props
     console.log('searched books ',results)
+    console.log('bookshelf', books)
+    const allBooks = results && results.length && results.map(result => {
+      const assignedBooks = books.find(book => book.id === result.id)
+      return Object.assign({}, assignedBooks, result)
+    })
+    const allBooksWithShelfStatus = allBooks && allBooks.length && allBooks.map(book => {
+      console.log('book with shelf', book.shelf)
+      if(book.shelf === undefined){
+        return book.shelf = "none"
+      } else {
+        return book.shelf
+      }
+    })
+    console.log('all books with shelf', allBooksWithShelfStatus)
+    console.log('allBooks', allBooks)
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -46,7 +61,7 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {results && results.length && results.map((book) => (
+            {allBooksWithShelfStatus && allBooksWithShelfStatus.length && allBooksWithShelfStatus.map((book) => (
               <Book
                 book={book}
                 key={book.id}

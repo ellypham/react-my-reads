@@ -10,7 +10,7 @@ class Book extends Component {
           <div className="book-shelf-changer">
             <select defaultValue={book.shelf} onChange={(event) => (updateBookshelf(book, event.target.value))}>
               <option value="none" disabled>Move to...</option>
-              <option value="currentlyRead">Currently Reading</option>
+              <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
               <option value="none">None</option>
@@ -19,11 +19,13 @@ class Book extends Component {
         </div>
         <div className="book-title">{book.title}</div>
         <div className="book-authors">
-          {book.authors && book.authors.length && book.authors.map((author) => (
-            <div key={author}>
-              <p>{author}</p>
+          {book.authors && book.authors.length > 1 ? (
+            book.authors.join(', ')
+          ) : (
+            <div key={book.author}>
+              <p>{book.author}</p>
             </div>
-          ))}
+          )}
         </div>
       </div>
     )
