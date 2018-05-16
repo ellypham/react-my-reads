@@ -8,7 +8,7 @@ class Bookcase extends Component {
 
     //filter books by shelf category
     let currentlyRead = books.filter((book) => {
-      return book.shelf === "currentlyRead"
+      return book.shelf === "currentlyReading"
     })
 
     let wantToRead = books.filter((book) => {

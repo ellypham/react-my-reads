@@ -31,18 +31,10 @@ class Search extends Component {
     console.log('bookshelf', books)
     const allBooks = results && results.length && results.map(result => {
       const assignedBooks = books.find(book => book.id === result.id)
+      console.log('assigned books', assignedBooks)
       return Object.assign({}, assignedBooks, result)
     })
-    const allBooksWithShelfStatus = allBooks && allBooks.length && allBooks.map(book => {
-      console.log('book with shelf', book.shelf)
-      if(book.shelf === undefined){
-        return book.shelf = "none"
-      } else {
-        return book.shelf
-      }
-    })
-    console.log('all books with shelf', allBooksWithShelfStatus)
-    console.log('allBooks', allBooks)
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -61,7 +53,7 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {allBooksWithShelfStatus && allBooksWithShelfStatus.length && allBooksWithShelfStatus.map((book) => (
+            {allBooks && allBooks.length && allBooks.map((book) => (
               <Book
                 book={book}
                 key={book.id}
