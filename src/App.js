@@ -24,7 +24,7 @@ class BooksApp extends React.Component {
     //mutates the books current shelf property to reflect the shelf that the book is being moved to
     book.shelf = shelf
     console.log('updated shelf', shelf)
-    BooksAPI.update(book, shelf).then((book, shelf) => {
+    BooksAPI.update(book, shelf).then((response) => {
       this.setState(state => ({
         books: state.books
         //filter the old version of the book out of books
